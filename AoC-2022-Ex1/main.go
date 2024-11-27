@@ -25,21 +25,20 @@ func main() {
   scanner:= bufio.NewScanner(file)
 
   var maxCalories, currentCalories int
-    for scanner.Scan(){
-      line := scanner.Text()
+  for scanner.Scan(){
+    line := scanner.Text()
   
-      if line == "" {
-        if currentCalories > maxCalories {
-          maxCalories = currentCalories
-        }
-        currentCalories = 0
-    
-        else {
-          calories, _ := strconv.Atoi(line)
-          currentCalories += currentCalories
+    if line == "" {
+      if currentCalories > maxCalories {
+        maxCalories = currentCalories
       }
-    }
+      currentCalories = 0
+    }else {
+      calories, _ := strconv.Atoi(line)
+      currentCalories += calories
+    }  
   }
+
   if currentCalories > maxCalories {
     maxCalories = currentCalories
   }
