@@ -1,1 +1,1 @@
-# A collection of GO puzzles and quizzes
+# Go repo for fun
