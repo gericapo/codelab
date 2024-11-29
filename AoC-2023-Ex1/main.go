@@ -9,15 +9,16 @@ import (
 
 func extractDigits(line string) (int,int){
     var firstDigit, lastDigit rune
-    for _, ch:= range line{
+    for _, ch:= range line {
       if unicode.IsDigit(ch){
         if firstDigit == 0 {
-          firstDigit = ch        }
+          firstDigit = ch        
+        }
+        lastDigit=ch
       }
-      lastDigit = ch
     }
 
-    if firstDigit == 0 || lastDigit == 0{
+    if firstDigit == 0 || lastDigit == 0 {
       fmt.Println("Error: Line does not contain valid digits:", line)
       return 0,0
     } 
@@ -66,6 +67,3 @@ func main(){
   total := calculateSum(lines)
   fmt.Println("Total calibration value:", total)
 }
-
-
-
