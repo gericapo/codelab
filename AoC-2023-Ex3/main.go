@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+	
 	file, err := os.Open("input.txt")
 	if err != nil {
 		fmt.Println("Error opening file:", err)
@@ -18,6 +19,8 @@ func main() {
 
 	var schematic [][]rune
 	scanner := bufio.NewScanner(file)
+
+	
 	for scanner.Scan() {
 		line := scanner.Text()
 		schematic = append(schematic, []rune(line))
@@ -36,26 +39,43 @@ func main() {
 		{1, -1}, {1, 0}, {1, 1},
 	}
 
-	var totalSum int
+	totalSum := 0
+
+	
 	for r := 0; r < rows; r++ {
-		for c := 0; c < cols; c++ {
+		for c := 0; c < cols; {
+			
 			if unicode.IsDigit(schematic[r][c]) {
-				num, _ := strconv.Atoi(string(schematic[r][c]))
+				start := c
+				for c < cols && unicode.IsDigit(schematic[r][c]) {
+					c++
+				}
+
+
+				num, _ := strconv.Atoi(string(schematic[r][start:c]))
 				isPartNumber := false
 
-				for _, dir := range directions {
-					nr, nc := r+dir[0], c+dir[1]
-					if nr >= 0 && nr < rows && nc >= 0 && nc < cols {
-						if !unicode.IsDigit(schematic[nr][nc]) && schematic[nr][nc] != '.' {
-							isPartNumber = true
-							break
+
+				for i := start; i < c; i++ {
+					for _, dir := range directions {
+						nr, nc := r+dir[0], i+dir[1]
+						if nr >= 0 && nr < rows && nc >= 0 && nc < cols {
+							if schematic[nr][nc] != '.' && !unicode.IsDigit(schematic[nr][nc]) {
+								isPartNumber = true
+								break
+							}
 						}
+					}
+					if isPartNumber {
+						break
 					}
 				}
 
 				if isPartNumber {
 					totalSum += num
 				}
+			} else {
+				c++
 			}
 		}
 	}
