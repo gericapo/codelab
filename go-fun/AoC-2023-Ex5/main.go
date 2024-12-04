@@ -73,7 +73,7 @@ func parseInput(filename string) ([]int, map[string][][3]int) {
 		return nil, nil
 	}
 	defer file.Close()
-
+  
 	scanner := bufio.NewScanner(file)
 	seeds := []int{}
 	mappings := make(map[string][][3]int)
