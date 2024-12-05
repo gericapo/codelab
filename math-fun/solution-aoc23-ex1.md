@@ -26,18 +26,17 @@ To extract all natural numbers from a string s, we define $\forall a_i \in s$ th
 $$\delta(a) = \begin{cases}
 1 & \text{if } a \in \mathbb{N}, \\
 0 & \text{otherwise.}
-\end{cases}
-$$
+\end{cases}$$
 
 Using $\delta(a)$, construct a sequence of all digits in s :
-$(a)_s = \{a_i \mid \delta(a_i) = 1, a_i \in s\}.$
+$(a)_s = \{a_i \mid \delta(a_i) = 1, a_i \in s\}$
 
 For a string s: \
    Extract the **minimum** and **maximum** values from this sequence:  
-   $x = \min((a)), \quad y = \max((a)).$
+   $x = \min((a)), \quad y = \max((a))$
 
 Combine x and y to form the calibration value:
-   $v(s) = 10x + y.$
+   $v(s) = 10x + y$
 
 ---
 
